@@ -8,7 +8,7 @@ schedules:
     displayName: Run every 3 minutes
     branches:
       include:
-        - new_branch
+        - test
     always: true
 
 stages:
