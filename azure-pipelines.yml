@@ -3,13 +3,13 @@ trigger: none
 pool:
   vmImage: ubuntu-latest
 
-#schedules:
-#  - cron: "*/3 * * * *"
-#    displayName: Run every 3 minutes
-#    branches:
-#      include:
-#        - test
-#    always: true
+schedules:
+  - cron: "*/3 * * * *"
+    displayName: Run every 3 minutes
+    branches:
+      include:
+        - test
+    always: true
 
 stages:
 
