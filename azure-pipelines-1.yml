@@ -15,13 +15,7 @@ stages:
   variables: 
     imageSHA: ${{  parameters.newHarborImage.event_data.resource[0].digest  }}
   jobs:
-  - deployment: Deploy_To_Dev
-    displayName: 'Deploy To Dev'
-    workspace:
-      clean: all
-    environment: stage
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - checkout: self
+  - job: Deploy_To_Dev
+    steps:
+    - script: |
+        echo 'Deploy To Dev.......'
