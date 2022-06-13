@@ -13,7 +13,7 @@ stages:
    - job: Image_Building_job
      steps:
      - script: |
-          curl -L https://<url_to_pivnet_cli> -o pivnet
+          curl -L https://github.com/pivotal-cf/pivnet-cli/releases/download/v3.0.1/pivnet-linux-amd64-3.0.1 -o pivnet
           chmod u+x pivnet
        displayName: 'Download Tanzu Network CLI'
      - script: ./pivnet login --api-token $(api-token)
