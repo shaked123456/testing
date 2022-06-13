@@ -19,5 +19,5 @@ stages:
          commands: |
             kubectl config use-context $(Context)
             kubectl patch storageclass $(Storage_Class) -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-            kp image create image$(Build.Repository) --git-revision $(Git_Url)
+            kp image create image$(Build.BuildNumber) --git-revision $(Git_Url)
          readyTimeout: '20000'
