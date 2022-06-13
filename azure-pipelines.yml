@@ -17,7 +17,7 @@ stages:
          sshEndpoint: 'tanzu-kp'
          runOptions: 'commands'
          commands: |
-            kubectl config use-context tkc-tbs
-            kubectl patch storageclass tanzu-tag-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-            kp image patch pacman-a --git-revision $(Build.Repository.LocalPath)
+            kubectl config use-context $(Context)
+            kubectl patch storageclass $(Storage_Class) -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+            kp image create image$(Build.Repository) --git-revision $(Git_Url)
          readyTimeout: '20000'
