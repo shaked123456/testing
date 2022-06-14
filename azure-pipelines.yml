@@ -21,3 +21,14 @@ stages:
             kubectl patch storageclass $(Storage_Class) -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
             kp image create image$(Build.BuildNumber) --tag $(Url_Tag) --git $(Git_Url)
          readyTimeout: '20000'
+     - script: |
+           curl -L https://github.com/pivotal-cf/pivnet-cli/releases/download/v3.0.1/pivnet-linux-amd64-3.0.1 -o pivnet
+           chmod u+x pivnet
+       displayName: 'Download Tanzu Network CLI'
+     - script: ./pivnet login --api-token $(api-token)
+       displayName: 'Log in to the Tanzu Network'
+     - script: | 
+           ./pivnet download-product-files --product-slug='build-service' --release-version='1.2.1' --product-file-id=970671
+           mv kp-linux-0.3.0 kp
+           chmod u+x kp
+       displayName: 'Download kpack cli'         
