@@ -1,0 +1,21 @@
+trigger:
+- none
+
+pool:
+  name: default
+
+resources:
+  webhooks:
+    - webhook: newHarborImage
+      connection: newHarborImageSC
+
+stages:
+
+- stage: Deploy_To_Dev
+  variables: 
+    imageSHA: ${{  parameters.newHarborImage.event_data.resource[0].digest  }}
+  jobs:
+  - job: Deploy_To_Dev
+    steps:
+    - script: |
+        echo $(imageSHA)
