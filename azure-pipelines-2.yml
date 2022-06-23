@@ -18,4 +18,4 @@ stages:
   - job: Deploy_To_Dev
     steps:
     - script: |
-        echo imageSHA
+        echo $imageSHA
